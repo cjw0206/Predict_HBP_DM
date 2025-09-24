@@ -163,7 +163,6 @@ def make_task_dataset(task):
     vitals_proc["birth_year"] = vitals_proc["name"].map(mapping_birth)
 
     vitals_proc = vitals_proc.dropna(axis=0)
-    # === (NEW) patients.csv 로드 후 age/sex 추가 ===
 
     # 불리언 문자열 처리 (true/false → True/False)
     for col in ["report.disease_history.hbp", "report.disease_history.dm"]:
@@ -198,5 +197,3 @@ def make_task_dataset(task):
 
 
     return vitals_proc
-
-# make_task_dataset("dm")
