@@ -1,0 +1,5 @@
+"_id","pat_id","pat_name","pat_sex","pat_birth","pat_email","pat_password","editBy","createdAt","updatedAt","pat_private_confirm","isReport","loginedAt","pat_token","pat_address","pat_phone","pat_private_confirm_date","pat_phone_encrypted","height","weight"
+"ObjectId(""64c68d9n3bb967c31d2fb"")","example_user1","홍길동","M","1981-02-03","hong@gmail.com","U2Fasdf9teN01gqcY+45RvTZ2r95j29zr/Ok=",,"2025-04-15 13:56:09","2025-05-25T05:21:49.927Z","2025-06-24",,,,,,,,,
+"ObjectId(""64168f5x3bb967c41d2fb8"")","example_user2","김아무개","M","2002-12-01","kim@gmail.com","U2FsdGVkasdfIpzRM12Nl8mD0FScvNGy/14ES8=",,"2025-05-13 10:09:30","2025-05-22T05:03:08.601Z","2025-06-24",true,,,"강원특별자치도 원주시","010-1452-1111",,,,
+"ObjectId(""6456904y3bb967c11d2fb9"")","example_user3","철수","M","1994-4-16","chul@gmail.com","U2FsdGVkX1/Kduv3asdfgB0pBcmH6aGniJyLYOln20=",,"2025-05-13 11:02:06","2025-05-25T05:36:30.392Z","2025-06-24",true,,,"강원특별자치도 원주시","010-4566-1234",,,,
+"ObjectId(""6528eddz844d8187e4d201"")","example_user4","영희","F","2005-06-18","younghee@naver.com","U2FsdGVkX198asdfWOiLZr8Z5WVv4/DI/iVgo=",,"2025-05-13 13:28:06","2025-05-13T04:38:14.468Z","2025-06-24",,,,,,,,,
