@@ -29,7 +29,7 @@ def preprocess_vital_accumulated():
     # -----------------------------
     # 1) CSV 로드
     # -----------------------------
-    vitals  = pd.read_csv("Data/vitals_accumulated.csv")
+    vitals  = pd.read_csv("Data/vitals_accumulated_example.csv")
 
     # 키 컬럼 정리
     vitals["name"] = vitals["name"].astype(str).str.strip()
@@ -112,34 +112,8 @@ def preprocess_vital_accumulated():
     vitals = vitals.dropna(axis=0)
     # print(f"제거 후 데이터 크기: {vitals.shape}")
 
-    ################ checking nan row #################
-    # for col in target_cols:
-    #     if col not in vitals.columns:
-    #         continue
-    #
-    #     # 1) 환자별 비영(0 제외) 평균 계산
-    #     per_patient_mean = (
-    #         vitals.loc[(vitals[col].notna()) & (vitals[col] > 0)]
-    #         .groupby("name")[col]
-    #         .mean()
-    #     )
-    #
-    #     # 2) 각 행(name)에 대해 환자별 평균 매핑
-    #     mapped_mean = vitals["name"].map(per_patient_mean)
-    #
-    #     # 3) 결측치/0 여부 마스크 생성
-    #     mask_missing = vitals[col].isna() | (vitals[col] == 0)
-    #
-    #     # 4) 환자 평균 있으면 채우고, 없으면 NaN으로 유지
-    #     vitals.loc[mask_missing, col] = mapped_mean[mask_missing]
-    #
-    # # === 전체 행 기준으로 NaN이 하나라도 남은 환자 수 ===
-    # nan_rows = vitals[target_cols].isna().any(axis=1).sum()
-    # print(f"NaN이 하나라도 남은 환자 수 (행 개수): {nan_rows}")
-    ################ checking nan row #################
-
     # -----------------------------
-    # 4) antihypertensives 값 환자별 통일
+    # 6) antihypertensives 값 환자별 통일
     # -----------------------------
     if "antihypertensives" in vitals.columns:
         patient_mean = vitals.groupby("name")["antihypertensives"].mean()
@@ -148,12 +122,12 @@ def preprocess_vital_accumulated():
         vitals["antihypertensives"] = vitals["name"].map(patient_label)
 
     # -----------------------------
-    # 5) name='admin' 제외
+    # 7) name='admin' 제외
     # -----------------------------
     vitals = vitals[vitals["name"].str.lower() != "admin"].copy()
 
     # -----------------------------
-    # 6) time 컬럼 제외
+    # 8) time 컬럼 제외
     # -----------------------------
     if "time" in vitals.columns:
         vitals = vitals.drop(columns=["time"])
@@ -166,11 +140,11 @@ def make_task_dataset(task):
     task: 'hbp' (고혈압) 또는 'dm' (당뇨)
     """
     vitals_proc = preprocess_vital_accumulated()
-    reports = pd.read_csv("Data/reports.csv")
+    reports = pd.read_csv("Data/reports_example.csv")
     reports["pat_id"] = reports["pat_id"].astype(str).str.strip()
 
     # === (NEW) patients.csv 로드 후 age/sex 추가 ===
-    patients = pd.read_csv("Data/patients.csv")
+    patients = pd.read_csv("Data/patients_example.csv")
     patients["pat_id"] = patients["pat_id"].astype(str).str.strip()
 
     # 성별: M -> 1, F -> 0
